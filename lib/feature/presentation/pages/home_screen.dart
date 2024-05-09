@@ -169,11 +169,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             noOfYears: int.parse(value ?? '0')));
                       },
                       labelText: state.response?.noOfYears.labelText ?? '',
-                      items: state.response?.noOfYears.values.entries
+                      items: state.getNoOfYearsItems()
                           .map<DropdownMenuItem<String>>((entry) {
                         return DropdownMenuItem<String>(
-                          value: entry.key,
-                          child: Text(entry.value),
+                          value: entry,
+                          child: Text(entry),
                         );
                       }).toList(),
                       labelStyle: TextStyle(

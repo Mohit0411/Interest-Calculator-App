@@ -16,8 +16,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<RateOfInterestChangeEvent>(
       (event, emit) => emit(
         state.getStateCopy(
-          dataModel: state.dataModel
-              .copyFrom(selectedRateOfInterest: event.rateOfInterest,
+          dataModel: state.dataModel.copyFrom(
+              selectedRateOfInterest: event.rateOfInterest,
               selectedCompound: 0),
         ),
       ),
@@ -35,7 +35,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<CompoundChangedEvent>(
       (event, emit) => emit(
         state.getStateCopy(
-          dataModel: state.dataModel.copyFrom(selectedCompound: event.compound),
+          dataModel: state.dataModel.copyFrom(
+              selectedCompound: event.compound, selectedNumberOfYears: 0),
         ),
       ),
     );
@@ -58,7 +59,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       double interest = state.dataModel.selectedPrincipalAmount *
           math.pow(compoundBase, exponent);
       emit(state.getStateCopy(
-          dataModel: state.dataModel.copyFrom(interest: interest),calculatePressed: true));
+          dataModel: state.dataModel.copyFrom(interest: interest),
+          calculatePressed: true));
     });
   }
 }

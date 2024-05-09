@@ -69,10 +69,32 @@ class HomeState extends Equatable {
       }
     });
 
-    if(items.isEmpty){
-      items.addAll(["1","2","4"]);
+    if (items.isEmpty) {
+      items.addAll(["1", "2", "4"]);
     }
 
+    return items;
+  }
+
+  List<String> getNoOfYearsItems() {
+    List<String> items = [];
+
+    if (dataModel.selectedCompound == 1) {
+      items.addAll(response?.noOfYears.values.values.where((element) {
+            return int.parse(element) <= 10;
+          }).toList() ??
+          []);
+    } else if (dataModel.selectedCompound == 2) {
+      items.addAll(response?.noOfYears.values.values.where((element) {
+            return int.parse(element) <= 20;
+          }).toList() ??
+          []);
+    } else if (dataModel.selectedCompound == 4) {
+      items.addAll(response?.noOfYears.values.values.where((element) {
+            return int.parse(element) <= 30;
+          }).toList() ??
+          []);
+    }
     return items;
   }
 }
